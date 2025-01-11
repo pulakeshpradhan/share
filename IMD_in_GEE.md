@@ -4,7 +4,7 @@
 ## 1. Selecting the Region of Interest
 
 ```javascript
-var geometry = ee.Geometry.Point([85.8949998359892, 20.462094851812726]);
+var geometry = ee.Geometry.Point([85.8949998359892, 20.462094851812726]); // Can use Polygon or Shapefile 
 Map.centerObject(geometry, 16);
 ```
 
