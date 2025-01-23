@@ -22,6 +22,151 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
     *   Defines the default center point and zoom level for the map.
 
 * * *
+### Step 2: Importing Datasets with Min/Max Calculation and Print
+
+```javascript
+// Define geometry (region of interest)
+var geometry = ee.FeatureCollection('FAO/GAUL/2015/level1')
+  .filter(ee.Filter.eq('ADM1_NAME', 'Odisha'));
+```
+
+**Explanation:**
+
+*   This part defines the **geometry** (region of interest) for the analysis. In this case, it's the state of **Odisha**, India.
+*   The `FAO/GAUL/2015/level1` dataset provides boundaries for administrative regions at the level 1 (state or province). We filter it to get the Odisha region.
+
+### Elevation Dataset
+
+```javascript
+// Elevation Dataset
+var dem = ee.Image('USGS/SRTMGL1_003').clip(geometry);
+var demMinMax = dem.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 30, bestEffort: true});
+print('DEM Min and Max:', demMinMax);
+```
+
+**Explanation:**
+
+*   The **elevation dataset** (Digital Elevation Model, DEM) is obtained from the **SRTM** (Shuttle Radar Topography Mission) with a resolution of **30 meters**. It’s clipped to the **Odisha** region using the defined `geometry`.
+*   `reduceRegion()` is used to calculate both the **minimum** and **maximum** values of elevation within the region. This helps understand the elevation range within the Odisha area.
+*   **Min and Max values** are printed using `print()`, which will show the minimum and maximum elevation values in the **Odisha** region.
+
+### Derived Slope
+
+```javascript
+// Derived Slope
+var slope = ee.Terrain.slope(dem);
+var slopeMinMax = slope.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 30, bestEffort: true});
+print('Slope Min and Max:', slopeMinMax);
+```
+
+**Explanation:**
+
+*   **Slope** is calculated from the DEM using GEE’s built-in `ee.Terrain.slope()` function, which calculates the steepness of the terrain in degrees.
+*   We use `reduceRegion()` to calculate the **minimum** and **maximum** values of slope within the region of interest. This provides insight into the **steepest and flattest areas** in Odisha.
+*   The **min and max values** of the slope are printed in the console.
+
+### Soil Properties (ISRIC SoilGrids)
+
+The soil properties (clay, sand, and silt content) are obtained from the **ISRIC SoilGrids** dataset. This dataset provides soil information for the top 0-5 cm layer of soil across the world. Each soil property is extracted and clipped to the **Odisha** region.
+
+#### Clay Content
+
+```javascript
+var clayISRIC = ee.Image("projects/soilgrids-isric/clay_mean").select('clay_0-5cm_mean').clip(geometry);
+var clayMinMax = clayISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
+print('Clay Min and Max:', clayMinMax);
+```
+
+**Explanation:**
+
+*   The **clay content** is obtained from the ISRIC SoilGrids dataset. We select the **clay** band for the 0-5 cm depth (`clay_0-5cm_mean`).
+*   The `reduceRegion()` function calculates the **min** and **max** values of clay content in Odisha at a scale of **250 meters** (the resolution of the ISRIC SoilGrids data).
+*   The **min and max values** of clay content are printed to the console.
+
+#### Sand Content
+
+```javascript
+var sandISRIC = ee.Image("projects/soilgrids-isric/sand_mean").select('sand_0-5cm_mean').clip(geometry);
+var sandMinMax = sandISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
+print('Sand Min and Max:', sandMinMax);
+```
+
+**Explanation:**
+
+*   The **sand content** for the topsoil (0-5 cm depth) is extracted from the ISRIC SoilGrids dataset.
+*   We use `reduceRegion()` to calculate the **min** and **max** values of sand content within the Odisha region.
+*   These **min and max values** are printed in the console.
+
+#### Silt Content
+
+```javascript
+var siltISRIC = ee.Image("projects/soilgrids-isric/silt_mean").select('silt_0-5cm_mean').clip(geometry);
+var siltMinMax = siltISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
+print('Silt Min and Max:', siltMinMax);
+```
+
+**Explanation:**
+
+*   The **silt content** for the topsoil (0-5 cm depth) is extracted from the ISRIC SoilGrids dataset.
+*   As with clay and sand, `reduceRegion()` calculates the **min** and **max** values of silt content within the **Odisha** region.
+*   These values are printed to the console.
+
+### Water Body Data
+
+```javascript
+// Water Body Data
+var dataset = ee.ImageCollection('GLCF/GLS_WATER').filterBounds(geometry).max();
+var water = dataset.clip(geometry);
+var waterMinMax = water.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 30, bestEffort: true});
+print('Water Min and Max:', waterMinMax);
+```
+
+**Explanation:**
+
+*   The **water body data** is obtained from the **GLCF/GLS\_WATER** dataset, which provides a map of water bodies.
+*   The `max()` function is applied to the ImageCollection to get the most recent map of water bodies.
+*   We then use `reduceRegion()` to calculate the **min** and **max** values for water presence in Odisha.
+*   The **min and max values** of water bodies (e.g., water and non-water) are printed.
+
+### Distance from Water
+
+```javascript
+// Distance from Water
+var distWater = water.select('water').eq(2)
+  .distance({kernel: ee.Kernel.euclidean(100), skipMasked: false})
+  .clip(geometry)
+  .rename('distance');
+var distWaterMinMax = distWater.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 30, bestEffort: true});
+print('Distance from Water Min and Max:', distWaterMinMax);
+```
+
+**Explanation:**
+
+*   **Distance from water** is calculated by first selecting the **water** band and checking where the pixel equals **2** (water body area).
+*   The `distance()` function calculates the **Euclidean distance** from each pixel to the nearest water body, with a **100-meter kernel** to smooth the distance calculation.
+*   The **min** and **max** values of the **distance from water** are calculated using `reduceRegion()` and printed.
+
+* * *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### **Step 2: Importing Datasets**
 
