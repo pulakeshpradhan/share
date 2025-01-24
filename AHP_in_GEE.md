@@ -187,13 +187,11 @@ Normalization is performed to scale all datasets to a range of 0 to 1, making th
     var normSlope = normalize(slope, (0), 77.99649810791016);
     ```
     
-3.  **Soil Properties**:
-    
-    *   **Clay**:
+3.  **Clay Soil Properties**:
         
-        ```javascript
-        var normClay = normalize(clayISRIC, (189), 468);
-        ```
+    ```javascript
+    var normClay = normalize(clayISRIC, (189), 468);
+    ```
         
 4.  **Distance from Water**:
     
@@ -266,28 +264,9 @@ Each normalized layer is classified and multiplied by a specific weightage value
         .where(normClay.gte(0.6), normClay.multiply(0.20));
     ```
     
-4.  **Sand and Silt**:  
-    Sand and silt content are similarly classified based on their contribution to infiltration or runoff.
-    
-    *   **Sand**:
+
         
-        ```javascript
-        var sandClassified = normSand.where(normSand.lt(0.2), normSand.multiply(5))
-            .where(normSand.gte(0.2).and(normSand.lt(0.4)), normSand.multiply(4))
-            .where(normSand.gte(0.4).and(normSand.lt(0.6)), normSand.multiply(3))
-            .where(normSand.gte(0.6), normSand.multiply(2));
-        ```
-        
-    *   **Silt**:
-        
-        ```javascript
-        var siltClassified = normSilt.where(normSilt.lt(0.2), normSilt.multiply(5))
-            .where(normSilt.gte(0.2).and(normSilt.lt(0.4)), normSilt.multiply(4))
-            .where(normSilt.gte(0.4).and(normSilt.lt(0.6)), normSilt.multiply(3))
-            .where(normSilt.gte(0.6), normSilt.multiply(2));
-        ```
-        
-5.  **Distance from Water**:  
+4.  **Distance from Water**:  
     Areas closer to water bodies are more susceptible to flooding.
     
     ```javascript
@@ -297,7 +276,7 @@ Each normalized layer is classified and multiplied by a specific weightage value
         .where(normWaterDis.gte(0.6), normWaterDis.multiply(0.15));
     ```
     
-6.  **Topographic Wetness Index (TWI)**:  
+5.  **Topographic Wetness Index (TWI)**:  
     Areas with high TWI values (indicative of wet conditions) are more flood-prone.
     
     ```javascript
@@ -307,7 +286,7 @@ Each normalized layer is classified and multiplied by a specific weightage value
         .where(normTWI.gte(0.6), normTWI.multiply(1.60));
     ```
     
-7.  **NDVI (Vegetation)**:  
+6.  **NDVI (Vegetation)**:  
     Vegetated areas are less prone to flooding.
     
     ```javascript
@@ -317,7 +296,7 @@ Each normalized layer is classified and multiplied by a specific weightage value
         .where(normNDVI.gte(0.6), normNDVI.multiply(0.25));
     ```
     
-8.  **Rainfall**:  
+7.  **Rainfall**:  
     Higher rainfall increases flood risk significantly.
     
     ```javascript
@@ -327,7 +306,7 @@ Each normalized layer is classified and multiplied by a specific weightage value
         .where(normRain.gte(0.6), normRain.multiply(13.20));
     ```
     
-9.  **Land Use Land Cover (LULC)**:  
+8.  **Land Use Land Cover (LULC)**:  
     LULC classes are weighted based on their flood susceptibility.
     
     ```javascript
