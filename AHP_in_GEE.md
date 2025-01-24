@@ -602,6 +602,8 @@ var descriptionPanel = ui.Panel([
   })
 ]);
 
+
+
 // Layer controls
 var layerPanel = ui.Panel({
   style: {
@@ -695,6 +697,9 @@ mainPanel.add(ui.Label({
     padding: '2px'
   }
 }));
+
+
+
 
 // Add elements to the main panel
 mainPanel.add(titlePanel);
