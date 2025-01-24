@@ -30,8 +30,6 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
     }
 
     ```
-    
-    *   This specifies the boundary of Odisha, likely using a shapefile uploaded as an asset.
 2.  **Set Default Viewpoint**:
     
     ```javascript
