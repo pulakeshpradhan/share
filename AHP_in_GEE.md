@@ -1051,3 +1051,7 @@ mapPanel.addLayer(
   🎓 PhD Scholar, MPhil, UGC-SRF, WB-SET     
   📕 Department of Geography  
   🏫 Ravenshaw University
+***
+![image](https://github.com/user-attachments/assets/9867b767-6ce2-4e71-a350-24240fcca6d5)
+
+[Poster Presentation on this topic at IIT Bombay on 4th January 2024   ](https://www.linkedin.com/company/grow-iitb/posts/?feedView=all)
