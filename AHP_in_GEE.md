@@ -467,7 +467,7 @@ Export.image.toDrive({
 ```
 
 This will save the map as a GeoTIFF file in the specified Google Drive folder for detailed analysis or sharing.
----
+***
 Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 
 
@@ -476,13 +476,12 @@ Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 
 This step involves designing an interactive user interface (UI) for visualizing and interacting with the flood susceptibility map. The UI is built using Google Earth Engine's **UI API** and includes features like layer controls, opacity sliders, and legends.
 
-* * *
-
-#### **6.1. Create the Main Panel**
-
-The main panel is the primary container for the UI components, such as the title, description, and controls.
-
 ```javascript
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Creating the User Interface (UI)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Create the main panel
 var mainPanel = ui.Panel({
   style: {
     width: '350px',
@@ -491,21 +490,16 @@ var mainPanel = ui.Panel({
     backgroundColor: '#f9f9f9'
   }
 });
-```
 
-* * *
-
-#### **6.2. Add Title and Metadata**
-
-The title and metadata provide context about the project.
-
-```javascript
+// Create title and subtitle
 var titlePanel = ui.Panel([
   ui.Label({
     value: 'Flood Susceptibility Mapping in Odisha',
     style: {
       fontWeight: 'bold',
       fontSize: '20px',
+      margin: '2px',
+      padding: '2px',
       textAlign: 'center',
       color: '#333'
     }
@@ -515,6 +509,8 @@ var titlePanel = ui.Panel([
     style: {
       fontSize: '14px',
       fontWeight: 'bold',
+      margin: '2px',
+      padding: '2px',
       textAlign: 'center'
     }
   }),
@@ -523,59 +519,104 @@ var titlePanel = ui.Panel([
     style: {
       fontSize: '12px',
       fontWeight: 'bold',
+      margin: '2px',
+      padding: '2px',
       textAlign: 'center'
     }
   }),
   ui.Label({
     value: 'Dept. of Geography, Ravenshaw University',
-    style: {
+    style:    {
       fontSize: '12px',
+      fontWeight: 'bold',
+      margin: '2px',
+      padding: '2px',
       textAlign: 'center'
     }
+  }),
+  ui.Label({
+    value: 'Emails: pulakeshpradhan@ravenshawuniversity.ac.in',
+    style: {
+      fontSize: '12px',
+      fontWeight: 'bold',
+      margin: '2px',
+      padding: '2px',
+      textAlign: 'center'
+    },
+    targetUrl: 'mailto:pulakeshpradhan@ravenshawuniversity.ac.in'
+  
+    
+  }),
+  ui.Label({
+    value: 'AHP Calculation Table',
+    style: {
+      fontWeight: 'bold',
+      fontSize: '14px',
+      margin: '10px 0',
+      padding: '2px',
+      textAlign: 'center',
+      color: '#000'
+    }
+  }),
+  ui.Label({
+    value: 'https://docs.google.com/spreadsheets/d/1IUUCP46KEQ9A2h0Ck9Xd-vlyS4fbqhng/edit?gid=956020128#gid=956020128',
+    style: {
+      fontSize: '12px',
+      color: '#1a73e8',
+      textDecoration: 'underline',
+      margin: '2px',
+      padding: '2px',
+      textAlign: 'center'
+    },
+    targetUrl: 'https://docs.google.com/spreadsheets/d/1IUUCP46KEQ9A2h0Ck9Xd-vlyS4fbqhng/edit?gid=956020128#gid=956020128'
   })
 ]);
-mainPanel.add(titlePanel);
-```
 
-* * *
-
-#### **6.3. Add Description and Instructions**
-
-This section provides an overview of the web app and usage instructions.
-
-```javascript
+// Add description
 var descriptionPanel = ui.Panel([
   ui.Label({
-    value: 'This web app uses multi-criteria analysis (Analytic Hierarchy Process - AHP) to visualize flood susceptibility across Odisha.',
-    style: { fontSize: '13px' }
+    value: 'This web app uses multi-criteria analysis (Analytic Hierarchy Process- AHP) to visualize flood susceptibility across Odisha.',
+    style: {
+      fontSize: '13px',
+      margin: '2px',
+      padding: '2px'
+    }
   }),
   ui.Label({
     value: 'Instructions:',
-    style: { fontWeight: 'bold', fontSize: '13px' }
+    style: {
+      fontWeight: 'bold',
+      fontSize: '13px',
+      margin: '2px',
+      padding: '2px'
+    }
   }),
   ui.Label({
-    value: '1. Use the layer visibility checkbox to show/hide layers.\n' +
-           '2. Adjust layer opacity using the slider.',
-    style: { fontSize: '12px' }
+    value: '1. Use the layer visibility checkbox to show/hide layers\n' +
+          '2. Adjust layer opacity using the slider',
+    style: {
+      fontSize: '12px',
+      margin: '2px',
+      padding: '2px'
+    }
   })
 ]);
-mainPanel.add(descriptionPanel);
-```
 
-* * *
-
-#### **6.4. Layer Controls**
-
-Layer controls allow users to toggle visibility and adjust opacity for different map layers.
-
-```javascript
+// Layer controls
 var layerPanel = ui.Panel({
-  style: { padding: '8px' }
+  style: {
+    padding: '8px'
+  }
 });
 
 layerPanel.add(ui.Label({
   value: 'Layer Controls',
-  style: { fontWeight: 'bold', fontSize: '15px' }
+  style: {
+    fontWeight: 'bold',
+    fontSize: '15px',
+    margin: '2px',
+    padding: '2px'
+  }
 }));
 
 var visibilityCheckbox = ui.Checkbox({
@@ -600,26 +641,26 @@ var opacitySlider = ui.Slider({
 layerPanel.add(visibilityCheckbox);
 layerPanel.add(ui.Label({
   value: 'Layer Opacity:',
-  style: { fontSize: '13px' }
+  style: { fontSize: '13px', margin: '2px', padding: '2px' }
 }));
 layerPanel.add(opacitySlider);
-mainPanel.add(layerPanel);
-```
 
-* * *
-
-#### **6.5. Add a Legend**
-
-The legend provides visual cues to interpret the flood susceptibility map.
-
-```javascript
+// Create legend
 var legend = ui.Panel({
-  style: { padding: '8px', position: 'bottom-right' }
+  style: {
+    padding: '8px',
+    position: 'bottom-right'
+  }
 });
 
 legend.add(ui.Label({
   value: 'Flood Susceptibility',
-  style: { fontWeight: 'bold', fontSize: '14px' }
+  style: {
+    fontWeight: 'bold',
+    fontSize: '14px',
+    margin: '2px',
+    padding: '2px'
+  }
 }));
 
 legend.add(ui.Thumbnail({
@@ -643,22 +684,33 @@ legend.add(ui.Panel({
   ],
   layout: ui.Panel.Layout.flow('horizontal')
 }));
+
+// Disclaimer
+mainPanel.add(ui.Label({
+  value: 'Disclaimer: The results are indicative. Ground-based verification is recommended.',
+  style: {
+    fontSize: '11px',
+    color: 'red',
+    margin: '8px 2px',
+    padding: '2px'
+  }
+}));
+
+// Add elements to the main panel
+mainPanel.add(titlePanel);
+mainPanel.add(descriptionPanel);
+mainPanel.add(layerPanel);
 mainPanel.add(legend);
-```
 
-* * *
-
-#### **6.6. Set Up the Map Panel**
-
-The map panel displays the flood susceptibility map.
-
-```javascript
+// Set up the map
 var mapPanel = ui.Map();
 mapPanel.setOptions('SATELLITE');
 mapPanel.setCenter(85.8959378, 20.4646314, 8);
 
+// Add flood susceptibility layer
+var floodSusceptibility = ee.Image(); // Placeholder for your data
 mapPanel.addLayer(
-  normalizedAHPCalculation,
+  floodSusceptibility,
   {
     min: 0,
     max: 1,
@@ -667,97 +719,317 @@ mapPanel.addLayer(
   },
   'Flood Susceptibility'
 );
-```
 
-* * *
-
-#### **6.7. Assemble the UI**
-
-Finally, the main panel and map panel are added to the app interface.
-
-```javascript
+// Assemble the interface
 ui.root.clear();
 ui.root.add(mainPanel);
 ui.root.add(mapPanel);
+
+// Create layer controls with visibility, opacity, and legends for all layers
+var layerPanel = ui.Panel({
+  style: {
+    padding: '8px'
+  }
+});
+
+var layerTitle = ui.Label({
+  value: 'Layer Controls',
+  style: {
+    fontWeight: 'bold',
+    fontSize: '15px',
+    margin: '2px',
+    padding: '2px'
+  }
+});
+
+// Define all layers with their properties and legend items
+var layers = [
+  {
+    name: 'Odisha Boundary',
+    image: ee.Image().byte().paint(geometry, 1, 3),  // Paint geometry with 3px border
+    visParams: {
+      palette: ['black'],
+      opacity: 1
+    },
+    legendLabels: ['State Boundary']
+  },
+  {
+    name: 'Flood Susceptibility',
+    image: normalizedAHPCalculation.clip(geometry),
+    visParams: {
+      min: 0,
+      max: 1,
+      palette: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', 
+                '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+    },
+    legendLabels: ['Low', 'Medium', 'High']
+  },
+  {
+    name: 'DEM',
+    image: dem,
+    visParams: {
+      min: 0,
+      max: 1100,
+      palette: ["440154","471365","482475","463480","414487","3b528b","355f8d","2f6c8e","2a788e","25848e","21918c","1e9c89","22a884","2fb47c","44bf70","5ec962","7ad151","9bd93c","bddf26","dfe318","fde725"]
+    },
+    legendLabels: ['0m', '550m', '1100m']
+  },
+  {
+    name: 'Slope',
+    image: slope,
+    visParams: {
+      min: 0,
+      max: 3.7,
+      palette: ["0b1eff","4be450","fffca4","ffa011","ff0000"]
+    },
+    legendLabels: ['0°', '2°', '4°']
+  },
+  {
+    name: 'Clay Soil',
+    image: clayISRIC,
+    visParams: {
+      min: 220,
+      max: 450,
+      palette: ["fff7f3","fde0dd","fcc5c0","fa9fb5","f768a1","dd3497","ae017e","7a0177","49006a"]
+    },
+    legendLabels: ['220', '315', '450']
+  },
+  {
+    name: 'Distance from Water',
+    image: distWater,
+    visParams: {
+      min: 0,
+      max: 25,
+      palette: ["#023858","#045a8d","#0570b0","#3690c0","#74a9cf","#a6bddb","#d0d1e6","#ece7f2","#fff7fb"]
+    },
+    legendLabels: ['Close Proximity', 'Moderate Range', 'Far Distance']
+  },
+  {
+    name: 'Topographic Wetness Index (TWI)',
+    image: twiImage,
+    visParams: {
+      min: 0,
+      max: 38,
+      palette: ["af0000","eb1e00","ff6400","ffb300","ffeb00","9beb4a","33db80","00b4ff","0064ff","000096"]
+    },
+    legendLabels: ['Low', 'Medium', 'High']
+  },
+  {
+    name: 'NDVI',
+    image: ndviCollection,
+    visParams: {
+      min: 0,
+      max: 8000,
+      palette: ["a50026","d73027","f46d43","fdae61","fee08b","ffffbf","d9ef8b","a6d96a","66bd63","1a9850","006837"]
+    },
+    legendLabels: ['Low', 'Medium', 'High']
+  },
+  {
+    name: 'Annual Rainfall',
+    image: annualMean,
+    visParams: {
+      min: 1100,
+      max: 2100,
+      palette: ["000000","0000ff","fdff92","ff2700","ff00e7"]
+    },
+    legendLabels: ['0mm', '1500mm', '3000mm']
+  },
+  {
+    name: 'LULC (Dynamic World)',
+    image: lulcClasses,
+      visParams: {
+      min: 0,
+      max: 8,
+      palette: ['#419BDF', '#397D49', '#88B053', '#7A87C6','#E49635', '#DFC35A', '#C4281B', '#A59B8F', '#B39FE1']
+    },
+    legendLabels: []
+  },
+
+];
+
+// Function to create a legend
+function createLegend(layer) {
+  var legend = ui.Panel({
+    style: {
+      padding: '8px',
+      position: 'bottom-right'
+    }
+  });
+
+  var legendTitle = ui.Label({
+    value: layer.name + ' Legend',
+    style: {
+      fontWeight: 'bold',
+      fontSize: '12px',
+      margin: '2px',
+      padding: '2px'
+    }
+  });
+
+  // Create color bar for legend
+  var colorBar = ui.Thumbnail({
+    image: ee.Image.pixelLonLat().select(0),
+    params: {
+      bbox: [0, 0, 1, 0.1],
+      dimensions: '150x10',
+      format: 'png',
+      min: 0,
+      max: 1,
+      palette: layer.visParams.palette
+    },
+    style: {stretch: 'horizontal', margin: '0px 8px', maxHeight: '10px'}
+  });
+
+  var labelPanel = ui.Panel({
+    layout: ui.Panel.Layout.flow('horizontal'),
+    style: {stretch: 'horizontal', margin: '0', padding: '0'}
+  });
+
+  layer.legendLabels.forEach(function(label) {
+    labelPanel.add(ui.Label(label, {
+      margin: '0 auto',
+      fontSize: '10px'
+    }));
+  });
+
+  legend.add(legendTitle);
+  legend.add(colorBar);
+  legend.add(labelPanel);
+
+  return legend;
+}
+
+// Function to create layer controls
+function createLayerControls(layer, index) {
+  var layerContainer = ui.Panel({
+    style: {
+      margin: '8px 0',
+      padding: '5px',
+      border: '1px solid #ddd',
+      backgroundColor: '#f8f8f8'
+    }
+  });
+  
+  // Layer name
+  var headerPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: layer.name,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '13px',
+          margin: '2px'
+        }
+      })
+    ],
+    style: {padding: '0px'}
+  });
+  
+  // Keep track of the current layer
+  var currentMapLayer = null;
+  
+  // Visibility checkbox
+  var visibilityCheckbox = ui.Checkbox({
+    label: 'Visible',
+    value: index === 0,
+    onChange: function(checked) {
+      // Remove existing layer if present
+      if (currentMapLayer) {
+        mapPanel.remove(currentMapLayer);
+        currentMapLayer = null;
+      }
+      
+      if (checked) {
+        // Add new layer and store reference
+        currentMapLayer = ui.Map.Layer(layer.image, layer.visParams, layer.name);
+        mapPanel.add(currentMapLayer);
+        // Show legend
+        layerContainer.widgets().get(3).style().set('shown', true);
+      } else {
+        // Hide legend
+        layerContainer.widgets().get(3).style().set('shown', false);
+      }
+    }
+  });
+  
+  // Opacity controls
+  var opacityLabel = ui.Label('Opacity:', {fontSize: '12px'});
+  var opacitySlider = ui.Slider({
+    min: 0,
+    max: 1,
+    value: 1,
+    step: 0.1,
+    onChange: function(value) {
+      if (currentMapLayer) {
+        currentMapLayer.setOpacity(value);
+      }
+    },
+    style: {stretch: 'horizontal'}
+  });
+  
+  var opacityPanel = ui.Panel({
+    widgets: [opacityLabel, opacitySlider],
+    style: {stretch: 'horizontal'}
+  });
+  
+  // Create legend for this layer
+  var legendPanel = createLegend(layer);
+  legendPanel.style().set('shown', index === 0);
+  
+  // Add all components to the container
+  layerContainer.add(headerPanel);
+  layerContainer.add(visibilityCheckbox);
+  layerContainer.add(opacityPanel);
+  layerContainer.add(legendPanel);
+  
+  // Initialize the layer if it's the first one
+  if (index === 0) {
+    currentMapLayer = ui.Map.Layer(layer.image, layer.visParams, layer.name);
+    mapPanel.add(currentMapLayer);
+  }
+  
+  return layerContainer;
+}
+
+// Add metadata panel with timestamp and user info
+var metadataPanel = ui.Panel([
+  ui.Label({
+    value: 'Last Updated: 2025-01-04 06:15:56 IST',
+    style: {fontSize: '11px', color: 'gray', margin: '2px'}
+  }),
+  ui.Label({
+    value: 'User: pulakeshpradhan',
+    style: {fontSize: '11px', color: 'gray', margin: '2px'}
+  })
+]);
+
+// Add layer controls to panel
+layerPanel.add(layerTitle);
+layerPanel.add(metadataPanel);
+layers.forEach(function(layer, index) {
+  layerPanel.add(createLayerControls(layer, index));
+});
+
+// Update the main panel
+mainPanel.clear();
+mainPanel.add(titlePanel);
+mainPanel.add(descriptionPanel);
+mainPanel.add(layerPanel);
+// mainPanel.add(disclaimer);
+
+// Clear and set up the map
+mapPanel.clear();
+mapPanel.setOptions('SATELLITE');
+mapPanel.setCenter(85.8959378, 20.4646314, 8);
+
+// Add initial flood susceptibility layer
+mapPanel.addLayer(
+  layers[0].image,
+  layers[0].visParams,
+  layers[0].name
+);
+
 ```
-
-* * *
-
-### Final Step: Summary of the Entire Flood Susceptibility Mapping Process
-
-Now that we’ve gone through each part in detail, let’s summarize the entire workflow of this flood susceptibility mapping project:
-
-* * *
-
-### **1\. Setting Up the Study Area and Datasets**
-
-*   **Study Area**: Odisha, India, defined using a shapefile.
-*   **Datasets**:
-    *   DEM for elevation and slope.
-    *   Soil properties (clay, sand, silt).
-    *   Water bodies and proximity.
-    *   Topographic Wetness Index (TWI).
-    *   NDVI (vegetation health).
-    *   Rainfall data (CHIRPS).
-    *   Land Use Land Cover (LULC).
-
-* * *
-
-### **2\. Data Preprocessing**
-
-*   Each dataset is clipped to the Odisha boundary.
-*   Additional metrics are calculated:
-    *   **Slope** from DEM.
-    *   **TWI** using flow accumulation and slope.
-    *   Annual rainfall averages from CHIRPS.
-
-* * *
-
-### **3\. Normalization**
-
-*   All datasets are normalized to a scale of 0 to 1 to ensure comparability.
-
-* * *
-
-### **4\. Weight Assignment**
-
-*   Weightages are assigned based on the relative contribution of each factor to flood susceptibility.
-*   Classification is applied to each normalized dataset using thresholds and weight values.
-
-* * *
-
-### **5\. Combining Layers**
-
-*   Weighted layers are summed using the **Analytic Hierarchy Process (AHP)** to compute the overall flood susceptibility score.
-*   The combined susceptibility map is normalized for easier interpretation.
-
-* * *
-
-### **6\. Visualization and Export**
-
-*   The flood susceptibility map is visualized using a color gradient (blue to red).
-*   The map is exported as a GeoTIFF for external use.
-
-* * *
-
-### **7\. Creating an Interactive User Interface (UI)**
-
-*   A web-based UI is built in Google Earth Engine with the following features:
-    *   Title, description, and metadata display.
-    *   Layer controls for toggling visibility and adjusting opacity.
-    *   A legend to interpret susceptibility scores.
-    *   Map display with the flood susceptibility layer.
-*   The interface is assembled and made interactive.
-
-* * *
-
-### **Key Outputs**
-
-1.  **Flood Susceptibility Map**:
-    *   Highlights areas in Odisha at varying risk levels (low to high).
-    *   Can be used for disaster preparedness and planning.
-2.  **Interactive UI**:
-    *   Allows users to explore data layers and customize visualizations.
 
 * * *
 # Pulakesh Pradhan
