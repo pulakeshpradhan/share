@@ -173,7 +173,8 @@ Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 
 Once the datasets are imported, they need to be normalized to prepare them for the flood susceptibility calculation. Here's how it is done:
 
-Normalization is performed to scale all datasets to a range of 0 to 1, making them comparable. The formula used is:  $\text{Normalized Value} = \frac{\text{Value} - \text{Min}}{\text{Max} - \text{Min}}$ 
+Normalization is performed to scale all datasets to a range of 0 to 1, making them comparable. 
+The formula used is:  $\text{Normalized Value} = \frac{\text{Value} - \text{Min}}{\text{Max} - \text{Min}}$ 
 
 1.  **DEM**:
     
