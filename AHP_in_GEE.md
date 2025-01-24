@@ -1,4 +1,7 @@
 ## AHP in GEE
+![Graphical Abstract New2](https://github.com/user-attachments/assets/82552179-923e-45ce-99ed-c5129e2a3e21)
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+
 ***
 
 ### **Step 1: Setting Up the Study Area**
