@@ -8,6 +8,8 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
 1.  **Define the time period of the Study**:
     
     ```javascript
+    Map.setOptions("SATELLITE")
+
     // set start and end year
     var startyear = 2021; 
     var endyear = 2022
