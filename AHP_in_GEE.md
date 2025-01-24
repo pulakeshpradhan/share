@@ -773,6 +773,7 @@ Now that we’ve gone through each part in detail, let’s summarize the entire 
 
 - **Phone**: ☏ +91-8617812861  
 - **Email**: 📧 pulakesh.mid@gmail.com  
-- **Address**:  
+- **Address**:
+  🎓 PhD Scholar, MPhil, UGC-SRF, WB-SET
   📕 Department of Geography  
   🏫 Ravenshw University  
