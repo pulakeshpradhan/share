@@ -36,7 +36,9 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
     var defaultZoom = 8;
     ```
     
-    *   Defines the default center point and zoom level for the map.
+    *   Defines the default center point and zoom level for the map
+---
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 
 * * *
 
@@ -175,6 +177,8 @@ It's advisable to use `bestEffort` only when necessary, such as when working wit
 
 For more detailed information, refer to the GEE documentation on `reduceRegion()`.
 * * *
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+* * *
 
 
 ### **Step 3: Normalizing the Data**
@@ -239,6 +243,9 @@ Normalization is performed to scale all datasets to a range of 0 to 1, making th
     var normRain = normalize(annualMean, (1102.677119962871), 2178.0353754013777);
     ```
     
+---
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+
 
 * * *
 ### **Step 4: Assigning Weightages and Classifying Layers**
@@ -365,8 +372,10 @@ Each normalized layer is classified and multiplied by a specific weightage value
       .where(lulcClasses.eq(8), lulcClasses.multiply(0.55));
     
 
-    ```
-    
+---
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+
+
 
 * * *
 
@@ -458,6 +467,9 @@ Export.image.toDrive({
 ```
 
 This will save the map as a GeoTIFF file in the specified Google Drive folder for detailed analysis or sharing.
+---
+Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+
 
 * * *
 ### **Step 6: Creating the User Interface (UI)**
@@ -748,6 +760,20 @@ Now that we’ve gone through each part in detail, let’s summarize the entire 
     *   Allows users to explore data layers and customize visualizations.
 
 * * *
+# Pulakesh Pradhan
 
----
-Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
+
+[![ResearchGate](https://img.shields.io/badge/ResearchGate-Profile-green?logo=researchgate&style=flat-square)](https://www.researchgate.net/profile/Pulakesh-Pradhan)
+[![ORCID](https://img.shields.io/badge/ORCID-Profile-brightgreen?logo=orcid&style=flat-square)](https://orcid.org/0000-0003-3103-3617)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/pulakeshpradhan/)
+[![Twitter](https://img.shields.io/badge/Twitter-Profile-blue?logo=twitter&style=flat-square)](https://twitter.com/geoindia2024)
+[![Google Scholar](https://img.shields.io/badge/Google_Scholar-Profile-yellow?logo=google-scholar&style=flat-square)](https://scholar.google.com/citations?user=yourID)
+[![Medium](https://img.shields.io/badge/Medium-Profile-black?logo=medium&style=flat-square)](https://medium.com/@pulakeshpradhan)
+
+## Contact
+
+- **Phone**: ☏ +91-8617812861  
+- **Email**: 📧 pulakesh.mid@gmail.com  
+- **Address**:  
+  📕 Department of Geography  
+  🏫 Ravenshw University  
