@@ -1052,6 +1052,6 @@ mapPanel.addLayer(
   📕 Department of Geography  
   🏫 Ravenshaw University
 ***
-![image](https://github.com/user-attachments/assets/9867b767-6ce2-4e71-a350-24240fcca6d5)
+![WhatsApp Image 2025-01-06 at 14 13 41_e65aa336](https://github.com/user-attachments/assets/e13d89ef-b2f2-4743-804e-5672d92b86f8)
 
 [Poster Presentation on this topic at IIT Bombay on 4th January 2024   ](https://www.linkedin.com/company/grow-iitb/posts/?feedView=all)
