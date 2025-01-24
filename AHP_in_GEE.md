@@ -84,7 +84,7 @@ Slope is an important factor in land use, water runoff, and agriculture planning
 
 4.  **Soil Properties**:
 
-*   You use the ISRIC SoilGrids dataset to extract information on the soil content (clay, sand, and silt) at a depth of 0-5 cm. These properties influence agricultural productivity, water retention, and erosion risk.
+*   You use the ISRIC SoilGrids dataset to extract information on the soil content (clay) at a depth of 0-5 cm. These properties influence agricultural productivity, water retention, and erosion risk.
     
 *   **Clay Content**:
     
