@@ -1050,4 +1050,4 @@ mapPanel.addLayer(
   
   🎓 PhD Scholar, MPhil, UGC-SRF, WB-SET     
   📕 Department of Geography  
-  🏫 Ravenshw University  
+  🏫 Ravenshaw University
