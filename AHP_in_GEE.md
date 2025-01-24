@@ -767,7 +767,6 @@ Now that we’ve gone through each part in detail, let’s summarize the entire 
 [![ORCID](https://img.shields.io/badge/ORCID-Profile-brightgreen?logo=orcid&style=flat-square)](https://orcid.org/0000-0003-3103-3617)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/pulakeshpradhan/)
 [![Twitter](https://img.shields.io/badge/Twitter-Profile-blue?logo=twitter&style=flat-square)](https://x.com/codeforgeo)
-[![Google Scholar](https://img.shields.io/badge/Google_Scholar-Profile-yellow?logo=google-scholar&style=flat-square)](https://scholar.google.com/citations?user=yourID)
 [![Medium](https://img.shields.io/badge/Medium-Profile-black?logo=medium&style=flat-square)](https://medium.com/@pulakeshpradhan)
 
 ## Contact
