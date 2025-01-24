@@ -33,8 +33,13 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
 2.  **Set Default Viewpoint**:
     
     ```javascript
-    var defaultCenterPoint = [83.95282597902448, 20.79701546664889];
+    
+    var defaultCenterPoint =ee.Geometry.Point( [83.95282597902448, 20.79701546664889]);
     var defaultZoom = 8;
+    
+    Map.centerObject(defaultCenterPoint, defaultZoom)
+
+
     ```
     
     *   Defines the default center point and zoom level for the map
@@ -88,22 +93,6 @@ Slope is an important factor in land use, water runoff, and agriculture planning
 var clayISRIC = ee.Image("projects/soilgrids-isric/clay_mean").select('clay_0-5cm_mean').clip(geometry);
 var clayMinMax = clayISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
 print('Clay Min and Max:', clayMinMax);
-```
-
-*   **Sand Content**:
-
-```javascript
-var sandISRIC = ee.Image("projects/soilgrids-isric/sand_mean").select('sand_0-5cm_mean').clip(geometry);
-var sandMinMax = sandISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
-print('Sand Min and Max:', sandMinMax);
-```
-
-*   **Silt Content**:
-
-```javascript
-var siltISRIC = ee.Image("projects/soilgrids-isric/silt_mean").select('silt_0-5cm_mean').clip(geometry);
-var siltMinMax = siltISRIC.reduceRegion({reducer: ee.Reducer.minMax(), geometry: geometry, scale: 250, bestEffort: true});
-print('Silt Min and Max:', siltMinMax);
 ```
 
 5.  **Water Body Data**:
@@ -204,18 +193,6 @@ Normalization is performed to scale all datasets to a range of 0 to 1, making th
         
         ```javascript
         var normClay = normalize(clayISRIC, (189), 468);
-        ```
-        
-    *   **Sand**:
-        
-        ```javascript
-        var normSand = normalize(sandISRIC, (99), 684);
-        ```
-        
-    *   **Silt**:
-        
-        ```javascript
-        var normSilt = normalize(siltISRIC, (107), 578);
         ```
         
 4.  **Distance from Water**:
@@ -1045,7 +1022,8 @@ mapPanel.addLayer(
 ## Contact
 
 - **Phone**: ☏ +91-8617812861  
-- **Email**: 📧 pulakesh.mid@gmail.com  
+- **Email**: 📧 pulakeshpradhan@ravenshawuniversity.ac.in
+  
 - **Address**:
   
   🎓 PhD Scholar, MPhil, UGC-SRF, WB-SET     
