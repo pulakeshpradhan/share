@@ -132,8 +132,7 @@ print('Distance from Water Min and Max:', distWaterMinMax);
 
 7.  **Flow Accumulation**:
 
-*   Flow accumulation, from the `WWF/HydroSHEDS/15ACC` dataset, helps assess how water collects and flows across the region. This data is used in hydrological modeling, especially to identify flood-prone areas.
-
+*   Flow accumulation, from the `WWF/HydroSHEDS/15ACC` dataset, helps assess how water collects and flows across the region.
 ```javascript
 var flowaccumImage = ee.Image('WWF/HydroSHEDS/15ACC');
 ```
@@ -176,7 +175,6 @@ var annualMean = annualPrecip.mean().clip(geometry);
 
 It's advisable to use `bestEffort` only when necessary, such as when working with exceptionally large datasets that cannot be processed at the desired resolution. For most applications, setting `bestEffort` to `false` ensures that the analysis is performed at the intended resolution, maintaining accuracy. If you encounter memory or processing issues, consider optimizing your data or analysis approach before resorting to `bestEffort`.
 
-For more detailed information, refer to the GEE documentation on `reduceRegion()`.
 * * *
 Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 * * *
