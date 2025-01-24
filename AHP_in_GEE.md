@@ -1013,4 +1013,4 @@ mapPanel.addLayer(
 ***
 ![WhatsApp Image 2025-01-06 at 14 13 41_e65aa336](https://github.com/user-attachments/assets/e13d89ef-b2f2-4743-804e-5672d92b86f8)
 
-[Poster Presentation on this topic at IIT Bombay on 4th January 2024   ](https://www.linkedin.com/company/grow-iitb/posts/?feedView=all)
+[Poster Presentation on this topic at IIT Bombay on 4th January 2024   ](https://pulakeshpradhan.users.earthengine.app/view/odishaflood)
