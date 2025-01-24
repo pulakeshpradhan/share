@@ -52,7 +52,7 @@ Made by [Pulakesh Pradhan](https://www.linkedin.com/in/pulakeshpradhan/)
 
 1.   **Defining the Region of Interest (Geometry)**:
 
-*   You define your region of interest as the state of Odisha using the FAO/GAUL/2015/level1 dataset. This dataset contains the boundaries of administrative regions at the level of states and provinces. By filtering the dataset for 'Orissa' (the official name of Odisha), you specify the area to perform all further analysis.
+*   You define your region of interest as the state of Odisha using the FAO/GAUL/2015/level1 dataset. This dataset contains the boundaries of administrative regions at the level of states and provinces. By filtering the dataset for 'Orissa' (the official name: Odisha), you specify the area to perform all further analysis.
 
 ```javascript
 var geometry = ee.FeatureCollection('FAO/GAUL/2015/level1').filter(ee.Filter.eq('ADM1_NAME', 'Orissa'));
