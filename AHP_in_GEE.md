@@ -18,6 +18,12 @@ The study focuses on flood susceptibility mapping in Odisha, India, using datase
     // make a list with years
     var years = ee.List.sequence(startyear, endyear);
 
+
+    //Function to normalize
+    function normalize(image, minValue, maxValue) {
+      return image.subtract(minValue).divide(maxValue - minValue);
+    }
+
     ```
     
     *   This specifies the boundary of Odisha, likely using a shapefile uploaded as an asset.
