@@ -5,10 +5,18 @@
 
 The study focuses on flood susceptibility mapping in Odisha, India, using datasets from Google Earth Engine (GEE).
 
-1.  **Define the Study Area**:
+1.  **Define the time period of the Study**:
     
     ```javascript
-    var geometry = ee.FeatureCollection('projects/pulakeshpradhan/assets/shp/odisha');
+    // set start and end year for NDVI 
+    var startDate = '2022-01-01';
+    var endDate = '2023-01-01';
+
+    // set start and end year for Rainfall 
+    var startyear = 2021;
+    var endyear = 2022
+
+
     ```
     
     *   This specifies the boundary of Odisha, likely using a shapefile uploaded as an asset.
