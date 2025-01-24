@@ -346,10 +346,23 @@ Each normalized layer is classified and multiplied by a specific weightage value
     LULC classes are weighted based on their flood susceptibility.
     
     ```javascript
+        
+    // Land Use Land Cover (LULC) classification
+    var lulcClasses = ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1').filter(ee.Filter.date(startDate, endDate)).select('label').mosaic().clip(geometry);
+    
+    //LULC total waight = 7.88 
     var lulcClassesWeightage = lulcClasses
-        .where(lulcClasses.eq(0), lulcClasses.multiply(1.1))  // Example weights for different LULC classes
-        .where(lulcClasses.eq(1), lulcClasses.multiply(1.65))
-        .where(lulcClasses.eq(5), lulcClasses.multiply(2.2));
+      .where(lulcClasses.eq(0), lulcClasses.multiply(1.1))
+      .where(lulcClasses.eq(1), lulcClasses.multiply(1.65))
+      .where(lulcClasses.eq(2), lulcClasses.multiply(1.65))
+      .where(lulcClasses.eq(3), lulcClasses.multiply(0.55))
+      .where(lulcClasses.eq(4), lulcClasses.multiply(1.65))
+      .where(lulcClasses.eq(5), lulcClasses.multiply(2.2))
+      .where(lulcClasses.eq(6), lulcClasses.multiply(1.1))
+      .where(lulcClasses.eq(7), lulcClasses.multiply(0.55))
+      .where(lulcClasses.eq(8), lulcClasses.multiply(0.55));
+    
+
     ```
     
 
